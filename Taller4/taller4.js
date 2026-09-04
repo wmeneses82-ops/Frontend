@@ -213,4 +213,42 @@ function calcularTotal(productos) {
 pedirPrecios();
 */
 
+//10. Cree una función que pida la fecha actual y por medio de otra función calcule cuántos días y semanas faltan para terminar el año.
+
+function pedirFechaUsuario() {
+    // Pedir datos al usuario
+    let dia = Number(prompt("Digite el día actual (1-31)"));
+    let mes = Number(prompt("Digite el mes actual (1-12)"));
+    let anio = Number(prompt("Digite el año actual (ejemplo: 2026)"));
+
+    // Crear objeto con la fecha ingresada
+    let fechaActual = new Date(anio, mes - 1, dia);
+
+    // Pasar la fecha a la función que calcula los días restantes
+    calcularDiasRestantes(fechaActual);
+}
+
+function calcularDiasRestantes(fechaActual) {
+    // Último día del año (31 de diciembre)
+    let finAnio = new Date(fechaActual.getFullYear(), 11, 31);
+
+    // Diferencia en milisegundos
+    let diferencia = finAnio - fechaActual;
+
+    // Convertir a días
+    let diasRestantes = Math.ceil(diferencia / (1000 * 60 * 60 * 24));
+
+    // Calcular semanas
+    let semanasRestantes = Math.floor(diasRestantes / 7);
+
+    // Mostrar resultados
+    document.write("<h3>Cálculo de tiempo restante del año</h3>");
+    document.write("Fecha actual: " + fechaActual.toLocaleDateString() + "<br>");
+    document.write("Días restantes para terminar el año: " + diasRestantes + "<br>");
+    document.write("Semanas restantes para terminar el año: " + semanasRestantes + "<br>");
+}
+
+// Llamar a la función principal
+pedirFechaUsuario();
+
 
